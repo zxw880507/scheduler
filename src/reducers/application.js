@@ -7,10 +7,10 @@
   export default function reducer(state, action) {
     const { type } = action;
     switch (type) {
-      case "SET_DAY": {
-        const { day } = action;
-        return { ...state, day };
-      }
+      // case "SET_DAY": {
+      //   const { day } = action;
+      //   return { ...state, day };
+      // }
       case "SET_INTERVIEW": {
         const { id, interview } = action;
 
