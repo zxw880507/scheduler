@@ -1,62 +1,14 @@
 // import {updateDayWithSpots} from "helpers/selectors";
 import { useReducer, useEffect } from "react";
 import axios from "axios";
+import reducer, {SET_DAY, SET_APPLICATION_DATA, SET_INTERVIEW} from "../reducers/application";
+
+
+
 
 export default function useApplicationData() {
   
-  const SET_DAY = "SET_DAY";
-  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
-  const SET_INTERVIEW = "SET_INTERVIEW";
-
-  function reducer(state, action) {
-    const { type } = action;
-    switch (type) {
-      case "SET_DAY": {
-        const { day } = action;
-        return { ...state, day };
-      }
-      case "SET_INTERVIEW": {
-        const { id, interview } = action;
-
-        const appointment = {
-          ...state.appointments[id],
-          interview: interview ? interview : null,
-        };
-        const appointments = {
-          ...state.appointments,
-          [id]: appointment,
-        };
-        const days = state.days.map((day) => ({
-          ...day,
-          spots: day.appointments.reduce(
-            (inital, appointmentId) =>
-              appointments[appointmentId].interview ? inital : ++inital,
-            0
-          ),
-        }));
-
-        return { ...state, appointments, days };
-      }
-
-      case "SET_APPLICATION_DATA": {
-        const { res, endpoints } = action;
-
-        return {
-          ...state,
-          ...res.reduce((accu, current, index) => {
-            accu[endpoints[index]] = current;
-            return accu;
-          }, {}),
-        };
-
-      }
-
-      default:
-        throw new Error(
-          `Tried to reduce with unsupported action type: ${type}`
-        );
-    }
-  }
+  
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
@@ -93,13 +45,13 @@ export default function useApplicationData() {
     /* fetching data from api/days */
     const endpoints = ["days", "appointments", "interviewers"];
     const promise = (endpoint) =>
-      axios.get(`api/${endpoint}`).then((res) => res.data);
+      axios.get(`/api/${endpoint}`).then((res) => res.data);
 
     Promise.all(endpoints.map((endpoint) => promise(endpoint))).then((res) =>
       dispatch({ type: SET_APPLICATION_DATA, res, endpoints })
     );
-
-    return webSocket.addEventListener("close", eventHandler);
+    
+    return () => webSocket.close();
   }, []);
 
   return { state, setDay, setInterview };

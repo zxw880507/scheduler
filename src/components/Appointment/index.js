@@ -17,7 +17,7 @@ const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
 const ERROR_SAVE = "ERROR_SAVE";
-const ERROR_DELETE = "ERRPR_DELETE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 
 
@@ -53,12 +53,11 @@ export default function Appointment(props) {
       transition(SHOW);
     }
     if (props.interview === null && mode === SHOW) {
-      console.log("this is happening")
       transition(EMPTY);
     } 
   }, [props.interview, transition, mode]);
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)}/>}
       {mode === SHOW && props.interview && (

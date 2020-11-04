@@ -5,6 +5,7 @@
     "dependencies": {
         "axios": "^0.21.0",
         "classnames": "^2.2.6",
+        "eslint-plugin-cypress": "^2.11.2",
         "normalize.css": "^8.0.1",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
@@ -16,7 +17,8 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "storybook": "start-storybook -p 9009 -s public --ci",
-        "build-storybook": "build-storybook -s public"
+        "build-storybook": "build-storybook -s public",
+        "cypress": "cypress open -P ."
     },
     "browserslist": {
         "production": [
@@ -42,13 +44,20 @@
         "@testing-library/react-hooks": "^3.4.2",
         "babel-loader": "^8.0.5",
         "eslint-plugin-react": "^7.21.5",
+        "jest-websocket-mock": "^2.2.0",
+        "mock-socket": "^9.0.3",
         "node-sass": "^4.11.0",
+        "prop-types": "^15.7.2",
         "react-test-renderer": "^16.9.0"
     },
     "jest": {
         "watchPathIgnorePatterns": [
             "<rootDir>/node_modules/",
             "<rootDir>/.git/"
+        ],
+        "collectCoverageFrom": [
+            "src/**/*.js",
+            "!src/index.js"
         ]
     },
     "proxy": "http://localhost:8001"

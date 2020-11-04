@@ -1,5 +1,5 @@
 import React from "react";
-/* ----------------------import file---------------------------- */
+/* ----------------------file imported below---------------------------- */
 /* story module */
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -22,7 +22,7 @@ import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
 import Form from "components/Appointment/Form";
-/* ----------------------import file---------------------------- */
+/* ----------------------file imported above---------------------------- */
 
 /* Button */
 storiesOf("Button", module)
