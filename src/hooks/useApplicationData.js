@@ -35,7 +35,7 @@ export default function useApplicationData() {
 
   useEffect(() => {
     const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-    /* sync updates */
+    /* websocket sync updates */
     const eventHandler = (e) => {
       const data = JSON.parse(e.data);
       dispatch(data);
