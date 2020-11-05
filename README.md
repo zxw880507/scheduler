@@ -22,3 +22,7 @@ npm test
 npm run storybook
 ```
 # Screen Shots
+
+!["Main Page"](docs/scheduler-main_page.png)
+
+!["Appointment Form"](docs/scheduler-appointment_form.png)
